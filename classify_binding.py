@@ -23,11 +23,6 @@ except ImportError:
 
 HARTREE_TO_KCAL = 627.5095
 
-
-# ─────────────────────────────────────────────────────────────────────────────
-#  Element mass table (mass-weighted COM / radius of gyration)
-# ─────────────────────────────────────────────────────────────────────────────
-
 MASS = {
     "H": 1.008, "C": 12.011, "N": 14.007, "O": 15.999, "F": 18.998,
     "P": 30.974, "S": 32.06, "Cl": 35.45, "Br": 79.904, "I": 126.904,
@@ -37,11 +32,6 @@ MASS = {
     "Co": 58.933, "Rh": 102.906, "Ir": 192.217, "Ag": 107.868, "Au": 196.967,
     "B": 10.811, "Si": 28.085, "Se": 78.971, "As": 74.922,
 }
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-#  File parsers
-# ─────────────────────────────────────────────────────────────────────────────
 
 def parse_mol2_atoms(path: Path):
     """Return list of (element, x, y, z) for every atom in a mol2 file,
@@ -131,10 +121,6 @@ def parse_reform_summary(path: Path):
     return n_host, n_guest, score
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-#  Geometry
-# ─────────────────────────────────────────────────────────────────────────────
-
 def mass_weighted_com(atoms):
     """atoms: list of (element, x, y, z). Returns (cx, cy, cz)."""
     wx = wy = wz = wsum = 0.0
@@ -213,12 +199,7 @@ def containment_score(host_atoms, guest_atoms, contact_cutoff: float):
         "contacts_per_atom": round(contacts_per_atom, 2),
         "com_ratio": round(com_ratio, 2),
     }
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-#  Per-pair classification
-# ─────────────────────────────────────────────────────────────────────────────
-
+    
 def classify_vina(reform_dir: Path, threshold: float, contact_cutoff: float):
     summary = reform_dir / "reform_summary.txt"
     mol2 = reform_dir / "complex_full.mol2"
@@ -307,10 +288,6 @@ def classify_crest_ensemble(crest_dir: Path, n_host: int, n_guest: int,
         "label": "bound" if frac_bound >= ensemble_bound_frac else "unbound",
     }
 
-
-# ─────────────────────────────────────────────────────────────────────────────
-#  Discovery + main
-# ─────────────────────────────────────────────────────────────────────────────
 
 def find_pairs(reformed_root: Path):
     pairs = []
