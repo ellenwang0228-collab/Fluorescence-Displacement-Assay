@@ -1,0 +1,35 @@
+#!/bin/sh
+# PhosphoMAX.app launcher stub — see launch_phosphomax.py for the logic.
+set -u
+
+# Contents/MacOS/PhosphoMAX -> the folder holding the .app
+HERE=$(cd "$(dirname "$0")" && pwd)
+BUNDLE=$(cd "$HERE/../.." && pwd)
+ROOT=$(dirname "$BUNDLE")
+
+export PHOSPHOMAX_TARGET="$ROOT/fda_launcher.py"
+LAUNCHER="$ROOT/launch_phosphomax.py"
+
+if [ ! -f "$LAUNCHER" ]; then
+    osascript -e 'display dialog "PhosphoMAX cannot find launch_phosphomax.py.
+
+The app must stay in the same folder as the analysis code. If you want it \
+somewhere else, make an alias instead of moving it." with title "PhosphoMAX" \
+buttons {"OK"} default button "OK" with icon stop' >/dev/null 2>&1
+    exit 1
+fi
+
+# /usr/bin/python3 exists on every modern macOS. It only has to be good
+# enough to run the launcher, which then finds the Python that has PySide6.
+for PY in /usr/bin/python3 /usr/local/bin/python3 /opt/homebrew/bin/python3; do
+    if [ -x "$PY" ]; then
+        exec "$PY" "$LAUNCHER"
+    fi
+done
+
+osascript -e 'display dialog "PhosphoMAX could not find any Python 3 to \
+start with. Install the Xcode command line tools with:
+
+    xcode-select --install" with title "PhosphoMAX" buttons {"OK"} \
+default button "OK" with icon stop' >/dev/null 2>&1
+exit 1

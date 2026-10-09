@@ -1,0 +1,19 @@
+# OS / editor
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Manual pre-edit snapshots — superseded by git history now
+*.bak
+*.bak_*
+
+# Logs
+*.log
+
+# Generated data / output (not source)
+output_reports/
+results/
+results_paper/
+saved_sessions/
