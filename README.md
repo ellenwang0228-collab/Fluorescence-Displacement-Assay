@@ -1,1 +1,1 @@
-# Fluorescence-Displacement-Assay
+# McTernan Lab Repo
