@@ -1,0 +1,341 @@
+{
+  "project_name": "Paper1_Redo",
+  "created": "2026-08-24T11:40:14",
+  "hosts": [
+    {
+      "name": "6MINUS_PMP6",
+      "source_file": "6MINUS_PMP6.mol2",
+      "charge": -6,
+      "formula": "C42H42O48P12",
+      "n_heavy": 102,
+      "n_h": 42,
+      "n_atoms": 144
+    },
+    {
+      "name": "PMP5_5minus_2",
+      "source_file": "PMP5_5minus_2.xyz",
+      "charge": -5,
+      "formula": "C35H34O40P10",
+      "n_heavy": 85,
+      "n_h": 34,
+      "n_atoms": 119
+    }
+  ],
+  "guests": [
+    {
+      "name": "1-Adamantanemethylamine",
+      "category": "Paper1",
+      "smiles": "C1C2CC3CC1CC(C2)(C3)CN",
+      "charge": 0,
+      "pubchem_cid": 86625,
+      "formula": "C11H19N",
+      "source": "pubchem"
+    },
+    {
+      "name": "Actinomycin_D",
+      "category": "Paper1",
+      "smiles": "C[C@@H]1[C@@H](C(=O)N[C@@H](C(=O)N2CCC[C@H]2C(=O)N(CC(=O)N([C@H](C(=O)O1)C(C)C)C)C)C(C)C)NC(=O)C3=C4C(=C(C=C3)C)OC5=C(C(=O)C(=C(C5=N4)C(=O)N[C@H]6[C@H](OC(=O)[C@@H](N(C(=O)CN(C(=O)[C@@H]7CCCN7C(=O)[C@H](NC6=O)C(C)C)C)C)C(C)C)C)N)C",
+      "charge": 0,
+      "pubchem_cid": 457193,
+      "formula": "C62H86N12O16",
+      "source": "pubchem"
+    },
+    {
+      "name": "Ampicillin",
+      "category": "Paper1",
+      "smiles": "CC1([C@@H](N2[C@H](S1)[C@@H](C2=O)NC(=O)[C@@H](C3=CC=CC=C3)N)C(=O)O)C",
+      "charge": 0,
+      "pubchem_cid": 6249,
+      "formula": "C16H19N3O4S",
+      "source": "pubchem"
+    },
+    {
+      "name": "Atracurium",
+      "category": "Paper1",
+      "smiles": "C[N+]1(CCC2=CC(=C(C=C2C1CC3=CC(=C(C=C3)OC)OC)OC)OC)CCC(=O)OCCCCCOC(=O)CC[N+]4(CCC5=CC(=C(C=C5C4CC6=CC(=C(C=C6)OC)OC)OC)OC)C",
+      "charge": 2,
+      "pubchem_cid": 47319,
+      "formula": "C53H72N2O12+2",
+      "source": "pubchem"
+    },
+    {
+      "name": "Cadaverine",
+      "category": "Paper1",
+      "smiles": "C(CCN)CCN",
+      "charge": 0,
+      "pubchem_cid": 273,
+      "formula": "C5H14N2",
+      "source": "pubchem"
+    },
+    {
+      "name": "Cefazolin",
+      "category": "Paper1",
+      "smiles": "CC1=NN=C(S1)SCC2=C(N3[C@@H]([C@@H](C3=O)NC(=O)CN4C=NN=N4)SC2)C(=O)O",
+      "charge": 0,
+      "pubchem_cid": 33255,
+      "formula": "C14H14N8O4S3",
+      "source": "pubchem"
+    },
+    {
+      "name": "Ceftazidime",
+      "category": "Paper1",
+      "smiles": "CC(C)(C(=O)O)O/N=C(/C1=CSC(=N1)N)\\C(=O)N[C@H]2[C@@H]3N(C2=O)C(=C(CS3)C[N+]4=CC=CC=C4)C(=O)[O-]",
+      "charge": 0,
+      "pubchem_cid": 5481173,
+      "formula": "C22H22N6O7S2",
+      "source": "pubchem"
+    },
+    {
+      "name": "Chlorpromazine",
+      "category": "Paper1",
+      "smiles": "CN(C)CCCN1C2=CC=CC=C2SC3=C1C=C(C=C3)Cl",
+      "charge": 0,
+      "pubchem_cid": 2726,
+      "formula": "C17H19ClN2S",
+      "source": "pubchem"
+    },
+    {
+      "name": "Ciprofloxacin",
+      "category": "Paper1",
+      "smiles": "C1CC1N2C=C(C(=O)C3=CC(=C(C=C32)N4CCNCC4)F)C(=O)O",
+      "charge": 0,
+      "pubchem_cid": 2764,
+      "formula": "C17H18FN3O3",
+      "source": "pubchem"
+    },
+    {
+      "name": "Cisatracurium",
+      "category": "Paper1",
+      "smiles": "C[N@@+]1(CCC2=CC(=C(C=C2[C@H]1CC3=CC(=C(C=C3)OC)OC)OC)OC)CCC(=O)OCCCCCOC(=O)CC[N@+]4(CCC5=CC(=C(C=C5[C@H]4CC6=CC(=C(C=C6)OC)OC)OC)OC)C",
+      "charge": 2,
+      "pubchem_cid": 62887,
+      "formula": "C53H72N2O12+2",
+      "source": "pubchem"
+    },
+    {
+      "name": "Cocaine",
+      "category": "Paper1",
+      "smiles": "CN1[C@H]2CC[C@@H]1[C@H]([C@H](C2)OC(=O)C3=CC=CC=C3)C(=O)OC",
+      "charge": 0,
+      "pubchem_cid": 446220,
+      "formula": "C17H21NO4",
+      "source": "pubchem"
+    },
+    {
+      "name": "Dasatinib",
+      "category": "Paper1",
+      "smiles": "CC1=C(C(=CC=C1)Cl)NC(=O)C2=CN=C(S2)NC3=CC(=NC(=N3)C)N4CCN(CC4)CCO",
+      "charge": 0,
+      "pubchem_cid": 3062316,
+      "formula": "C22H26ClN7O2S",
+      "source": "pubchem"
+    },
+    {
+      "name": "Daunorubicin",
+      "category": "Paper1",
+      "smiles": "C[C@H]1[C@H]([C@H](C[C@@H](O1)O[C@H]2C[C@@](CC3=C2C(=C4C(=C3O)C(=O)C5=C(C4=O)C(=CC=C5)OC)O)(C(=O)C)O)N)O",
+      "charge": 0,
+      "pubchem_cid": 30323,
+      "formula": "C27H29NO10",
+      "source": "pubchem"
+    },
+    {
+      "name": "Dibucaine",
+      "category": "Paper1",
+      "smiles": "CCCCOC1=NC2=CC=CC=C2C(=C1)C(=O)NCCN(CC)CC",
+      "charge": 0,
+      "pubchem_cid": 3025,
+      "formula": "C20H29N3O2",
+      "source": "pubchem"
+    },
+    {
+      "name": "Doxorubicin",
+      "category": "Paper1",
+      "smiles": "C[C@H]1[C@H]([C@H](C[C@@H](O1)O[C@H]2C[C@@](CC3=C2C(=C4C(=C3O)C(=O)C5=C(C4=O)C(=CC=C5)OC)O)(C(=O)CO)O)N)O",
+      "charge": 0,
+      "pubchem_cid": 31703,
+      "formula": "C27H29NO11",
+      "source": "pubchem"
+    },
+    {
+      "name": "Fentanyl",
+      "category": "Paper1",
+      "smiles": "CCC(=O)N(C1CCN(CC1)CCC2=CC=CC=C2)C3=CC=CC=C3",
+      "charge": 0,
+      "pubchem_cid": 3345,
+      "formula": "C22H28N2O",
+      "source": "pubchem"
+    },
+    {
+      "name": "Haloperidol",
+      "category": "Paper1",
+      "smiles": "C1CN(CCC1(C2=CC=C(C=C2)Cl)O)CCCC(=O)C3=CC=C(C=C3)F",
+      "charge": 0,
+      "pubchem_cid": 3559,
+      "formula": "C21H23ClFNO2",
+      "source": "pubchem"
+    },
+    {
+      "name": "Histamine",
+      "category": "Paper1",
+      "smiles": "C1=C(NC=N1)CCN",
+      "charge": 0,
+      "pubchem_cid": 774,
+      "formula": "C5H9N3",
+      "source": "pubchem"
+    },
+    {
+      "name": "Imipramine",
+      "category": "Paper1",
+      "smiles": "CN(C)CCCN1C2=CC=CC=C2CCC3=CC=CC=C31",
+      "charge": 0,
+      "pubchem_cid": 3696,
+      "formula": "C19H24N2",
+      "source": "pubchem"
+    },
+    {
+      "name": "Irinotecan",
+      "category": "Paper1",
+      "smiles": "CCC1=C2CN3C(=CC4=C(C3=O)COC(=O)[C@@]4(CC)O)C2=NC5=C1C=C(C=C5)OC(=O)N6CCC(CC6)N7CCCCC7",
+      "charge": 0,
+      "pubchem_cid": 60838,
+      "formula": "C33H38N4O6",
+      "source": "pubchem"
+    },
+    {
+      "name": "L-Lysine",
+      "category": "Paper1",
+      "smiles": "C(CCN)C[C@@H](C(=O)O)N",
+      "charge": 0,
+      "pubchem_cid": 5962,
+      "formula": "C6H14N2O2",
+      "source": "pubchem"
+    },
+    {
+      "name": "N6N6N6-Trimethyl-L-lysine",
+      "category": "Paper1",
+      "smiles": "C[N+](C)(C)CCCC[C@@H](C(=O)[O-])N",
+      "charge": 0,
+      "pubchem_cid": 440120,
+      "formula": "C9H20N2O2",
+      "source": "pubchem"
+    },
+    {
+      "name": "Methotrexate",
+      "category": "Paper1",
+      "smiles": "CN(CC1=CN=C2C(=N1)C(=NC(=N2)N)N)C3=CC=C(C=C3)C(=O)N[C@@H](CCC(=O)O)C(=O)O",
+      "charge": 0,
+      "pubchem_cid": 126941,
+      "formula": "C20H22N8O5",
+      "source": "pubchem"
+    },
+    {
+      "name": "Mitoxantrone",
+      "category": "Paper1",
+      "smiles": "C1=CC(=C2C(=C1NCCNCCO)C(=O)C3=C(C=CC(=C3C2=O)O)O)NCCNCCO",
+      "charge": 0,
+      "pubchem_cid": 4212,
+      "formula": "C22H28N4O6",
+      "source": "pubchem"
+    },
+    {
+      "name": "Morphine",
+      "category": "Paper1",
+      "smiles": "CN1CC[C@]23[C@@H]4[C@H]1CC5=C2C(=C(C=C5)O)O[C@H]3[C@H](C=C4)O",
+      "charge": 0,
+      "pubchem_cid": 5288826,
+      "formula": "C17H19NO3",
+      "source": "pubchem"
+    },
+    {
+      "name": "Moxifloxacin",
+      "category": "Paper1",
+      "smiles": "COC1=C2C(=CC(=C1N3C[C@@H]4CCCN[C@@H]4C3)F)C(=O)C(=CN2C5CC5)C(=O)O",
+      "charge": 0,
+      "pubchem_cid": 152946,
+      "formula": "C21H24FN3O4",
+      "source": "pubchem"
+    },
+    {
+      "name": "Neostigmine",
+      "category": "Paper1",
+      "smiles": "CN(C)C(=O)OC1=CC=CC(=C1)[N+](C)(C)C",
+      "charge": 1,
+      "pubchem_cid": 4456,
+      "formula": "C12H19N2O2+",
+      "source": "pubchem"
+    },
+    {
+      "name": "Palbociclib",
+      "category": "Paper1",
+      "smiles": "CC1=C(C(=O)N(C2=NC(=NC=C12)NC3=NC=C(C=C3)N4CCNCC4)C5CCCC5)C(=O)C",
+      "charge": 0,
+      "pubchem_cid": 5330286,
+      "formula": "C24H29N7O2",
+      "source": "pubchem"
+    },
+    {
+      "name": "Pancuronium",
+      "category": "Paper1",
+      "smiles": "CC(=O)O[C@H]1C[C@@H]2CC[C@@H]3[C@@H]([C@]2(C[C@@H]1[N+]4(CCCCC4)C)C)CC[C@]5([C@H]3C[C@@H]([C@@H]5OC(=O)C)[N+]6(CCCCC6)C)C",
+      "charge": 2,
+      "pubchem_cid": 441289,
+      "formula": "C35H60N2O4+2",
+      "source": "pubchem"
+    },
+    {
+      "name": "Rocuronium",
+      "category": "Paper1",
+      "smiles": "CC(=O)O[C@H]1[C@H](C[C@@H]2[C@@]1(CC[C@H]3[C@H]2CC[C@@H]4[C@@]3(C[C@@H]([C@H](C4)O)N5CCOCC5)C)C)[N+]6(CCCC6)CC=C",
+      "charge": 1,
+      "pubchem_cid": 441290,
+      "formula": "C32H53N2O4+",
+      "source": "pubchem"
+    },
+    {
+      "name": "Serotonin",
+      "category": "Paper1",
+      "smiles": "C1=CC2=C(C=C1O)C(=CN2)CCN",
+      "charge": 0,
+      "pubchem_cid": 5202,
+      "formula": "C10H12N2O",
+      "source": "pubchem"
+    },
+    {
+      "name": "Spermidine",
+      "category": "Paper1",
+      "smiles": "C(CCNCCCN)CN",
+      "charge": 0,
+      "pubchem_cid": 1102,
+      "formula": "C7H19N3",
+      "source": "pubchem"
+    },
+    {
+      "name": "Spermine",
+      "category": "Paper1",
+      "smiles": "C(CCNCCCN)CNCCCN",
+      "charge": 0,
+      "pubchem_cid": 1103,
+      "formula": "C10H26N4",
+      "source": "pubchem"
+    },
+    {
+      "name": "Vecuronium",
+      "category": "Paper1",
+      "smiles": "CC(=O)O[C@H]1C[C@@H]2CC[C@@H]3[C@@H]([C@]2(C[C@@H]1N4CCCCC4)C)CC[C@]5([C@H]3C[C@@H]([C@@H]5OC(=O)C)[N+]6(CCCCC6)C)C",
+      "charge": 1,
+      "pubchem_cid": 39765,
+      "formula": "C34H57N2O4+",
+      "source": "pubchem"
+    },
+    {
+      "name": "Vinblastine",
+      "category": "Paper1",
+      "smiles": "CC[C@@]1(C[C@H]2C[C@@](C3=C(CCN(C2)C1)C4=CC=CC=C4N3)(C5=C(C=C6C(=C5)[C@]78CCN9[C@H]7[C@@](C=CC9)([C@H]([C@@]([C@@H]8N6C)(C(=O)OC)O)OC(=O)C)CC)OC)C(=O)OC)O",
+      "charge": 0,
+      "pubchem_cid": 13342,
+      "formula": "C46H58N4O9",
+      "source": "pubchem"
+    }
+  ]
+}
