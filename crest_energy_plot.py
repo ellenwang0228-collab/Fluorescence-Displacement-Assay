@@ -17,10 +17,6 @@ import matplotlib.gridspec as gridspec
 import numpy as np
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-#  XYZ multi-frame parser
-# ─────────────────────────────────────────────────────────────────────────────
-
 def parse_crest_conformers(path: Path):
     """
     Parse a CREST crest_conformers.xyz file.
@@ -52,11 +48,6 @@ def parse_crest_conformers(path: Path):
 
     return energies
 
-
-# ─────────────────────────────────────────────────────────────────────────────
-#  Discovery
-# ─────────────────────────────────────────────────────────────────────────────
-
 def discover_pairs(root: Path):
     """
     Scan root for crest_conformers.xyz files.
@@ -76,11 +67,6 @@ def discover_pairs(root: Path):
 
     return sorted(pairs, key=lambda x: x[0])
 
-
-# ─────────────────────────────────────────────────────────────────────────────
-#  Statistics
-# ─────────────────────────────────────────────────────────────────────────────
-
 def pair_stats(label, e_rel):
     return {
         "pair":             label,
@@ -94,12 +80,6 @@ def pair_stats(label, e_rel):
         "n_within_3kcal":   int(np.sum(e_rel <= 3.0)),
     }
 
-
-# ─────────────────────────────────────────────────────────────────────────────
-#  Plotting
-# ─────────────────────────────────────────────────────────────────────────────
-
-# Colour pairs by energy span — teal (narrow/rigid) → orange (wide/flexible)
 def _span_colour(span_kcal, vmin=0, vmax=6):
     t = min(max((span_kcal - vmin) / max(vmax - vmin, 1e-9), 0), 1)
     # interpolate: teal (0.15, 0.56, 0.56) → orange (0.90, 0.55, 0.15)
@@ -115,11 +95,10 @@ def make_figure(pairs, stats, out_png: Path, title: str):
         print("No pairs to plot.")
         return
 
-    # Dynamic figure height: 0.55 in per pair, min 6 in
+    
     fig_h = max(6, 0.55 * n + 3)
     fig = plt.figure(figsize=(16, fig_h), facecolor="white")
 
-    # Three columns: violin | n_conformers bar | span bar
     gs = gridspec.GridSpec(1, 3, width_ratios=[3, 1, 1], wspace=0.05,
                            left=0.28, right=0.97, top=0.93, bottom=0.06)
     ax_v  = fig.add_subplot(gs[0])   # violin / strip
@@ -135,7 +114,7 @@ def make_figure(pairs, stats, out_png: Path, title: str):
     max_span = max(spans) if spans else 6
     positions = list(range(n))
 
-    # ── violin plot ───────────────────────────────────────────────────────────
+
     for i, (e_rel, col) in enumerate(zip(energies, colours)):
         if len(e_rel) >= 4:
             vp = ax_v.violinplot(e_rel, positions=[i], vert=False,
@@ -168,8 +147,7 @@ def make_figure(pairs, stats, out_png: Path, title: str):
     ax_v.spines[["top", "right"]].set_visible(False)
     ax_v.grid(axis="x", color="#EEEEEE", lw=0.5)
     ax_v.set_title("Conformer energy distribution", fontsize=10, pad=6)
-
-    # ── n_conformers bar ──────────────────────────────────────────────────────
+    
     ax_n.barh(positions, n_conf, color=colours, alpha=0.75, height=0.55)
     ax_n.set_yticks(positions)
     ax_n.set_yticklabels([])
@@ -186,7 +164,6 @@ def make_figure(pairs, stats, out_png: Path, title: str):
                   va="center", fontsize=7, color="#555555")
     ax_n.set_xlim(0, max(n_conf) * 1.25 if n_conf else 1)
 
-    # ── energy span bar ───────────────────────────────────────────────────────
     ax_sp.barh(positions, spans, color=colours, alpha=0.75, height=0.55)
     ax_sp.set_yticks(positions)
     ax_sp.set_yticklabels([])
@@ -202,7 +179,6 @@ def make_figure(pairs, stats, out_png: Path, title: str):
                    f"{sp:.1f}", va="center", fontsize=7, color="#555555")
     ax_sp.set_xlim(0, max(spans) * 1.25 if spans else 1)
 
-    # ── colour legend ─────────────────────────────────────────────────────────
     legend_patches = [
         mpatches.Patch(color=_span_colour(0,   0, max_span), label="Narrow span (rigid)"),
         mpatches.Patch(color=_span_colour(max_span * 0.5, 0, max_span), label="Medium span"),
@@ -225,11 +201,6 @@ def make_figure(pairs, stats, out_png: Path, title: str):
     plt.savefig(out_png, dpi=180, bbox_inches="tight", facecolor="white")
     print(f"  Saved: {out_png}")
 
-
-# ─────────────────────────────────────────────────────────────────────────────
-#  CSV output
-# ─────────────────────────────────────────────────────────────────────────────
-
 def write_csv(stats, out_csv: Path):
     cols = ["pair", "n_conformers", "e_span_kcal", "e_mean_kcal",
             "e_median_kcal", "e_p25_kcal", "e_p75_kcal",
@@ -239,11 +210,6 @@ def write_csv(stats, out_csv: Path):
         for s in stats:
             fh.write(",".join(str(s[c]) for c in cols) + "\n")
     print(f"  Saved: {out_csv}")
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-#  Main
-# ─────────────────────────────────────────────────────────────────────────────
 
 def main():
     ap = argparse.ArgumentParser(
