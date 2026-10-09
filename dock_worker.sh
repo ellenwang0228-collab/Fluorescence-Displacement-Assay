@@ -13,17 +13,9 @@
 #   CONDA_MODULE   module to load before sourcing conda setup (e.g. Anaconda3/...)
 #   CONDA_SETUP    path to the cluster's conda.env.sh
 #
-# Manifest columns (tab-separated, header on line 1):
-#   job_id  host  guest  receptor  ligand  config  out_pdbqt  log_file
-# All paths are absolute, so this script never needs to `cd` anywhere --
-# unlike crest_worker.sh, there's no CREST/xtb output-directory dependence
-# on CWD here.
 ###############################################################################
 set -Eeuo pipefail
 
-###############################################################################
-# Helpers
-###############################################################################
 ts()  { date +"%Y-%m-%d %H:%M:%S"; }
 log() { echo "[$(ts)] TASK=${SLURM_ARRAY_TASK_ID:-?} $*"; }
 die() { log "FATAL: $*" >&2; exit 1; }
