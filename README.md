@@ -25,12 +25,7 @@ McTernan-Lab-Repository/
 │   ├── pipeline_spectral.py    # Spectral-scan (Ex/Em) pipeline
 │   ├── chromatic_db.py         # plate-reader filter → dye resolution
 │   ├── session_io.py           # save/load .phosmax session files
-│   ├── layout_utils.py         # shared figure-layout maths
-│   ├── Chromatic_DB/           # Dye ↔ filter lookup table (.xlsx)
-│   ├── Comp_Kd/                # Host–dye Kd table used by the Ki pipeline (.xlsx)
-│   ├── Comparison_comp/        # example competitive fit-result files
-│   ├── applet_versions/        # dated snapshots of earlier versions (YYMMDD)
-│   └── other/                  # assay protocol (FDA_protocol.docx), example exports
+│   └── layout_utils.py         # shared figure-layout maths
 └── Computational Modelling/
     ├── pipeline.sh             # main driver (phases 0–5)
     ├── dock_worker.sh          # SLURM array task: one Vina docking job
@@ -49,7 +44,7 @@ McTernan-Lab-Repository/
 
 ### What it does
 
-The assay runs in two stages (full bench protocol in [`FDA_launcher/other/FDA_protocol.docx`](FDA_launcher/other/FDA_protocol.docx)):
+The assay runs in two stages, using Echo-dispensed 384-well plates read on a plate reader:
 
 1. **Direct titration.** The host is titrated against a fixed concentration of fluorescent dye (e.g. DAPI, H33258). This gives the host–dye **Kd** and the host concentration needed for near-maximal dye binding (IC90).
 2. **Competitive titration.** Guests are titrated into the pre-formed host–dye complex. Displacement of the dye lowers the fluorescence, which gives each guest's **Ki**.
@@ -110,8 +105,17 @@ Point the app at an experiment folder with this structure:
 
 - **Mapping files** are standard Echo transfer exports. Each must contain the columns `Compound ID`, `Destination Well`, `Destination Concentration`, `Destination Unit` and `Destination Plate Name`. In `blank_map`, blank wells use `Compound ID = blank`, and dye names must exactly match the ones in `dye_map`.
 - **Raw file names:** the plate name is the first `_`-separated token that is not a date. For example, `260324_Plate1_….xlsx` gives the plate name `Plate1`, which must match `Destination Plate Name` in the maps.
-- **Chromatic DB** (`Chromatic_DB/chromatic_db.xlsx`; columns `Dye`, `Filter`, `Aliases`): for multichromatic plates (several dyes read on one plate), the app reads the filter settings from each raw file's header and looks up which dye belongs to which channel. It is only used when *Multi-chromatic plates* is ticked.
-- **Kd table** (`Comp_Kd/Kd_table.xlsx`; columns `Host`, `Dye`, `Dye_Concentration`, `Kd_uM`): the host–dye Kd values from the direct titrations. The Ki pipeline needs them for the Cheng–Prusoff / Wang corrections. Add a row whenever you characterise a new host–dye pair.
+### Reference tables (not stored in the repo)
+
+The app also reads two small lookup tables. They are not in the repository, so keep your own copies. By default the app looks for them in folders next to `fda_launcher.py`, but you can point it at any folder in the GUI. Each folder can hold one or more `.xlsx` files.
+
+| Folder (default) | Needed for | Columns | Example row |
+|---|---|---|---|
+| `Comp_Kd/` | Competitive Binding (**required**) | `Host`, `Dye`, `Dye_Concentration` (µM), `Kd_uM` | `PMP6-Na, DAPI, 1, 1.23` |
+| `Chromatic_DB/` | Multi-chromatic plates (optional) | `Dye`, `Filter`, `Aliases` (`;`-separated) | `H33258, 355-15/465-20, H33; H332` |
+
+- **Kd table:** these are the host–dye Kd values from your direct titrations. The Ki pipeline needs them for the Cheng–Prusoff / Wang corrections, so add a row whenever you characterise a new host–dye pair.
+- **Chromatic DB:** when several dyes are read on one plate, the app reads the filter settings (`Ex-bw/Em-bw`) from each raw file's header and uses this table to work out which dye belongs to which channel. It is only used when *Multi-chromatic plates* is ticked.
 
 ### Outputs
 
@@ -132,7 +136,7 @@ Use **💾 Save Session** to save the whole analysis (every setting, dataframe a
 
 ### Version history
 
-`applet_versions/` holds dated snapshots (`YYMMDD/`) from before the code was in git. Keep them for reference only. The current code is the set of files at the top level of `FDA_launcher/`, and from now on changes should be tracked with git commits rather than new snapshot folders.
+Track changes with git commits rather than dated copies of the scripts. Older dated snapshots (`applet_versions/`) were removed in commit `b02000f` and can still be recovered from git history, for example with `git checkout b02000f~1 -- FDA_launcher/applet_versions`.
 
 ---
 
