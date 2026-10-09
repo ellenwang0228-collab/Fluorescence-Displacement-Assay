@@ -1,37 +1,4 @@
 #!/usr/bin/env python3
-"""
-crest_energy_plot.py  —  Visualise GFN-FF conformer energy distributions
-from a CREST run across all host-guest pairs.
-
-Run from your crest_results/ directory:
-    python3 crest_energy_plot.py
-
-Or point it at a different root:
-    python3 crest_energy_plot.py --dir /path/to/crest_results
-
-Outputs:
-    crest_energy_summary.png  — multi-panel figure
-    crest_energy_summary.csv  — per-pair statistics table
-
-A NOTE ON COMPARABILITY
------------------------
-Within each host-guest pair, conformer energies are directly comparable:
-same atoms, same GFN-FF method, so ΔE = E_i − E_min is a real relative
-stability.
-
-Across different pairs, raw absolute GFN-FF energies are NOT comparable
-because different guests change the total atom count and composition, and
-GFN-FF total energies scale with system size. What CAN be compared across
-pairs is:
-  • Conformational energy span — how wide is the accessible energy window?
-    (a measure of binding-mode flexibility)
-  • Number of conformers — how many distinct binding geometries survive
-    CREGEN's 0.125 Å RMSD cutoff and 6 kcal/mol energy window?
-
-Both are plotted here. For true binding affinities you need ΔG from free-
-energy methods, or at minimum ΔE_bind = E(complex) - E(host) - E(guest)
-from separate single-point calculations.
-"""
 
 import argparse
 import os
