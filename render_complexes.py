@@ -1,39 +1,4 @@
 #!/usr/bin/env python3
-"""
-render_complexes.py — PyMOL image renderer for host-guest complexes.
-
-THREE WAYS TO USE IT
---------------------
-
-1. Run it IN the complex directory (simplest — just cd there first):
-
-       cd /path/to/reformed/MyHost/MyGuest
-       python3 /path/to/render_complexes.py
-       # → writes MyHost_MyGuest.png in the current directory
-
-2. Point it at one complex directory:
-
-       python3 render_complexes.py --dir reformed/MyHost/MyGuest
-
-3. Batch — scan a whole reformed/ tree and render everything:
-
-       python3 render_complexes.py --batch reformed/
-       # → writes renders/<host>_<guest>.png next to the reformed/ folder
-
-PYMOL PATH
-----------
-The script tries common locations automatically. If yours is elsewhere:
-
-       python3 render_complexes.py --pymol /Applications/PyMOL.app/Contents/bin/pymol
-
-IMAGE SETTINGS (your spec)
---------------------------
-  Sticks  |  stick_radius 0.25
-  C grey60  H white  N blue  O vivid-red  metals as spheres (scale 0.6)
-  ray 2000×2000  |  dpi 500  |  ray_trace_mode 1  |  bg white
-  light_count 8  |  ambient 0  |  direct 0.1  |  reflect 1.5
-  shadow decay_factor 2  |  decay_range 0.2
-"""
 
 import argparse
 import os
