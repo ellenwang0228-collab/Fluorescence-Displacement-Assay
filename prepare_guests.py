@@ -1,46 +1,4 @@
 #!/usr/bin/env python3
-"""
-prepare_guests.py — SMILES → 3D structure (full H) → mol2, for guests selected
-in the local Host-Guest Project Builder app.
-
-This is "Phase 0.5" of pipeline.sh.  It runs BEFORE Vina docking and turns the
-2D SMILES strings exported by the local app into 3D structures with an
-explicit, chemically-correct hydrogen count — the same format pipeline.sh's
-Phase 1 expects to find in ./guests/.
-
-WHAT THIS DOES, PER GUEST (in order):
-  1. Read one row of guests_smiles.csv  (name, category, smiles, charge, pubchem_cid)
-  2. Skip if ./guests/<name>.mol2 already exists and is non-empty (idempotent —
-     safe to re-run; lets you hand-edit a structure and keep it).
-  3. Parse the SMILES with RDKit and sanitize.
-  4. Add explicit hydrogens (Chem.AddHs) — this fixes the H count BEFORE any
-     3D coordinates exist, so embedding places every H atom explicitly.
-  5. Embed a 3D conformer (ETKDGv3). If the first random seed fails, retry
-     with a few alternative seeds before giving up.
-  6. Geometry-optimize with the MMFF94 force field; fall back to UFF if MMFF
-     parameters are unavailable for this molecule (e.g. some metals/halogens).
-  7. Cross-check RDKit's formal charge against the 'charge' column from the
-     CSV (which came from PubChem or your manual entry) — warn on mismatch,
-     but DO NOT override your CSV value (that's what charges.csv will use).
-  8. Write an intermediate SDF, then convert SDF → mol2 via obabel with
-     Gasteiger partial charges (matching the conventions used elsewhere in
-     this pipeline for guest preparation).
-  9. Report heavy-atom / hydrogen-atom counts for each guest.
-
-OUTPUT:
-  ./guests/<name>.mol2          — one per guest, full H, 3D, ready for Phase 1
-  ./guests/prepare_summary.txt  — per-guest status table (OK / FAIL / SKIP)
-
-DEPENDENCIES (already required on the cluster — see pipeline.sh Phase 0):
-  rdkit, obabel
-
-USAGE:
-  python3 prepare_guests.py --csv guests_smiles.csv --out-dir ./guests
-
-CALLED BY:
-  pipeline.sh Phase 0.5 (automatically, only if guests_smiles.csv is present)
-"""
-
 import sys
 import os
 import csv
