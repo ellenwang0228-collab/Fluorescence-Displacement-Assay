@@ -92,22 +92,9 @@ shopt -s nullglob
 ###############################################################################
 
 
-# ═══════════════════════════════════════════════════════════════════════════════
-#  USER SETTINGS  —  edit everything in this block
-# ═══════════════════════════════════════════════════════════════════════════════
 
-# Resolve the directory this script lives in (not CWD). Sibling scripts
-# (dock_worker.sh, crest_worker.sh, reform_complex.py, prepare_guests.py)
-# are expected to live alongside pipeline.sh in the same directory. Using
-# SCRIPT_DIR means batch sbatch submissions find them correctly regardless
-# of which directory the user calls pipeline.sh from.
 SCRIPT_DIR="$(cd "$(dirname "$(realpath "$0")")" && pwd)"
 
-# ── Auto-locate and copy any missing sibling scripts ──────────────────────────
-# The four scripts below must live alongside pipeline.sh. The most common
-# failure mode is copying pipeline.sh to a new project directory without
-# copying the siblings. This block searches for them automatically and copies
-# them in so you don't have to do it manually for every new project.
 _REQUIRED_SIBLINGS=(dock_worker.sh crest_worker.sh reform_complex.py prepare_guests.py)
 _missing_siblings=()
 for _s in "${_REQUIRED_SIBLINGS[@]}"; do
@@ -202,22 +189,15 @@ done
 unset _v
 
 # ── Vina box settings ──────────────────────────────────────────────────────────
-# Box is centred on the host heavy-atom COM (mass-weighted).
-# For anisotropic cavities (e.g. barrel vs cage), increase the relevant axis.
 SIZE_X=20
 SIZE_Y=20
 SIZE_Z=20
 EXHAUSTIVENESS=30
 NUM_MODES=5
 ENERGY_RANGE=8
-VINA_CPUS=80                     # CPUs to give each Vina run (interactive mode)
+VINA_CPUS=80                     
 
 # ── Batch docking (SLURM array) ────────────────────────────────────────────────
-# Interactive mode uses VINA_CPUS above (one job, maximise its speed). Batch
-# mode runs MANY jobs concurrently as a SLURM array, so a much smaller
-# per-task CPU count is usually better for overall throughput: Vina's search
-# doesn't scale well past ~8 cores for a single ligand, and a smaller request
-# lets far more array tasks run at once on a shared cluster.
 VINA_CPUS_BATCH=8
 VINA_MEM="8G"
 VINA_TIME="04:00:00"
@@ -237,7 +217,7 @@ CLASH_WARN_DIST=2.0              # Å: flag host-guest pairs closer than this
 REFORM_SCRIPT="$SCRIPT_DIR/reform_complex.py"
 
 # ── CREST / xtb settings ──────────────────────────────────────────────────────
-CREST_CHARGE_DEFAULT=0           # charge if molecule not in charges.csv
+CREST_CHARGE_DEFAULT=0           
 CREST_SOLVENT="water"            # ALPB solvent; set to "none" to omit --alpb
 CREST_CPUS=64
 CREST_MEM="500G"
